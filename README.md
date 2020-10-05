@@ -24,39 +24,18 @@
 | --------------| ---------- | ------------------------------ |
 | name          | string     | null: false                    |
 | description   | text       | null: false                    |
+| category_id   | integer    | null: false                    |
+| status_id     | integer    | null: false                    |
+| burden_id     | integer    | null: false                    |
+| area_id       | integer    | null: false                    |
+| days_id       | integer    | null: false                    |
+| price         | integer    | null: false                    |
 | user          | references | null: false, foreign_key: true |
 
 ### Association
 
 belongs_to :user
-has_one :item_profiles
-has_one :delivery
 has_one :order
-
-## item_profilesテーブル
-
-| Column        | Type       | Option                         |
-| --------------| ---------- | ------------------------------ |
-| category      | integer    | null: false                    |
-| status        | integer    | null: false                    |
-| item          | references | null: false, foreign_key: true |
-
-### Association
-
-belongs_to :item
-
-## deliveriesテーブル
-
-| Column    | Type       | Option                         |
-| --------- | ---------- | ------------------------------ |
-| burden    | integer    | null: false                    |
-| area      | integer    | null: false                    |
-| days      | integer    | null: false                    |
-| item      | references | null: false, foreign_key: true |
-
-### Association
-
-belongs_to :item
 
 ## ordersテーブル
 
