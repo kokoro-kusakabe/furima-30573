@@ -37,8 +37,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category Select")
       end
+      it "category_idが0だと出品できない" do
+        @item.category_id = "0"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category Select")
+      end
       it "status_idを選択していないと出品できない" do
         @item.status_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status Select")
+      end
+      it "status_idが0だと出品できない" do
+        @item.status_id = "0"
         @item.valid?
         expect(@item.errors.full_messages).to include("Status Select")
       end
@@ -47,13 +57,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Burden Select")
       end
+      it "burden_idが0だと出品できない" do
+        @item.burden_id = "0"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Burden Select")
+      end
       it "area_idを選択していないと出品できない" do
         @item.area_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Area Select")
       end
+      it "area_idが0だと出品できない" do
+        @item.area_id = "0"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Area Select")
+      end
       it "day_idを選択していないと出品できない" do
         @item.day_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Day Select")
+      end
+      it "day_idが0だと出品できない" do
+        @item.day_id = "0"
         @item.valid?
         expect(@item.errors.full_messages).to include("Day Select")
       end
