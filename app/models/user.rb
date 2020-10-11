@@ -13,4 +13,6 @@ class User < ApplicationRecord
           validates :name_reading_last, format: { with: /\A[ァ-ヶー－]+\z/, message: "Full-width katakana characters"}
         end
         validates :password, format: { with: /(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]/, message: "Include both letters and numbers" }
+  
+  has_many :items
 end
