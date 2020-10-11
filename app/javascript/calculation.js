@@ -13,9 +13,3 @@ function calculation(){
 }
 
 window.addEventListener('DOMContentLoaded', calculation)
-
-// result1 = Math.trunc(value_price * 0.1);
-// result2 = Math.trunc(value_price * 0.9);
-
-// result1 = value_price * 0.1;
-//       result2 = value_price * 0.9;
