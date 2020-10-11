@@ -8,11 +8,16 @@ class Item < ApplicationRecord
 
   validates :image, :name, :description, :category, :status, :burden, :area, :day, :price, presence: true
 
-  validates :category_id, :status_id, :burden_id, :area_id, :day_id, numericality: { other_than: 0 } 
-  # validates :category_id, :status_id, :burden_id, :area_id, :day_id, numericality: { message: "select"}
-  # validates :price format(with: )
+  validates :category_id, numericality: { other_than: 0 , message: "Select" }
+  validates :status_id, numericality: { other_than: 0 , message: "Select" }
+  validates :burden_id, numericality: { other_than: 0 , message: "Select" }
+  validates :area_id, numericality: { other_than: 0 , message: "Select" }
+  validates :day_id, numericality: { other_than: 0 , message: "Select" }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "Out of setting range"}
+  validates :price, format: { with: /\A[0-9]+\z/ , message: "Half-width number"}
 
   has_one_attached :image
   
   belongs_to :user
+
 end

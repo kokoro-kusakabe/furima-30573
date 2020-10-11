@@ -4,8 +4,8 @@ window.addEventListener('load', function(){
   let result2 = document.getElementById("profit");
   price.addEventListener('input',function () {
       value_price = price.value
-      result1 = value_price * 0.1;
-      result2 = value_price * 0.9;
+      result1 = Math.trunc(value_price * 0.1);
+      result2 = Math.trunc(value_price * 0.9);
       document.getElementById("add-tax-price").innerHTML = result1;
       document.getElementById("profit").innerHTML = result2;
     })
