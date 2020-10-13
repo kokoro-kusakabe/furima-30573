@@ -25,11 +25,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
-    if @item.update(item_params)
-      redirect_to "/items/#{@item.id}"
+      @item = Item.find(params[:id])
+    if  @item.update(item_params)
+        redirect_to "/items/#{@item.id}"
     else
-      render :edit
+        render :edit
     end
   end
 
