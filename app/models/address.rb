@@ -9,4 +9,7 @@ class Address < ApplicationRecord
     validates :house_number
     validates :phone_number, format{ with: /\A\d{10,11}\z/, message:"Input only number"}
   end
+
+  belongs_to :order
+
 end
