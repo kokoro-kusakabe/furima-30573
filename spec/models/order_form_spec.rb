@@ -2,17 +2,33 @@ require 'rails_helper'
 
 RSpec.describe OrderForm, type: :model do
     before do
-      user = FactoryBot.build(:user)
-      item = FactoryBot.build(:item)
-      @order_form = FactoryBot.build(:order_form, user_id: user.id, item_id: item.id)
+
+      # user_idが紐付かないと購入できないのテストコードを削除する。
+      # buyer,sellerのuserを作成する
+      # :itemの隣にsellerを追加する,
+      # buyerの情報をorder_formに入れましょう
+
+      buyer = FactoryBot.create(:user)
+      seller = FactoryBot.create(:user)
+      item = FactoryBot.create(:item, user_id: seller.id)
+      @order_form = FactoryBot.build(:order_form, user_id: buyer.id, item_id: item.id)
+      sleep 1
     end
 
     context '商品の購入が成功する時' do
-      it "postal_code,area_id,city,house_number,building_name,phone_number,tokenが存在すれば購入できる" do
+      it "postal_code,area_id,city,house_number,building_name,phone_number,token,user_id,item_idが存在すれば購入できる" do
         expect(@order_form).to be_valid
       end
       it "building_nameがなくても購入ができる" do
         @order_form.building_name = nil
+        expect(@order_form).to be_valid
+      end
+      it "item_idが紐づいていない場合は購入できる" do
+        @order_form.item_id = nil
+        expect(@order_form).to be_valid
+      end
+      it "user_idが紐づいていない場合は購入できる" do
+        @order_form.user_id = nil
         expect(@order_form).to be_valid
       end
     end
@@ -24,7 +40,7 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form.errors.full_messages).to include("Token can't be blank")
       end
       it "postal_codeがないと購入できない" do
-        @order_form.postal_code = nil
+        @order_form.postal_code = ""
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Postal code can't be blank")
       end
@@ -78,12 +94,5 @@ RSpec.describe OrderForm, type: :model do
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Phone number Input only number")
       end
-      it "user_idが紐付かないと購入できない" do #実際に紐づくのはorderテーブルです。
-        @order_form.user_id = nil
-        expect(@order_form).to be_valid
-      end
     end
-
-
-
 end
