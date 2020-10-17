@@ -2,12 +2,6 @@ require 'rails_helper'
 
 RSpec.describe OrderForm, type: :model do
     before do
-
-      # user_idが紐付かないと購入できないのテストコードを削除する。
-      # buyer,sellerのuserを作成する
-      # :itemの隣にsellerを追加する,
-      # buyerの情報をorder_formに入れましょう
-
       buyer = FactoryBot.create(:user)
       seller = FactoryBot.create(:user)
       item = FactoryBot.create(:item, user_id: seller.id)
