@@ -5,9 +5,7 @@ class OrdersController < ApplicationController
 
   def index
     @order_form = OrderForm.new
-      if  @item.order.present? 
-          redirect_to root_path
-      elsif  @item.user.id == current_user.id
+      if  @item.order.present? || @item.user.id == current_user.id
           redirect_to root_path
       else
           render :index
