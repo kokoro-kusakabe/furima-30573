@@ -88,5 +88,10 @@ RSpec.describe OrderForm, type: :model do
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Phone number Input only number")
       end
+      it "phone_numberにハイフンが入ってると商品が購入できない" do
+        @order_form.phone_number = "1234-678901"
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Phone number Input only number")
+      end
     end
 end
